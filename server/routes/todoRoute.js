@@ -1,11 +1,18 @@
-const express = require('express')
-const router = express.Router()
-const {allTodos, deleteTodo, addTodo, markTodo, filterTodo} = require('../controllers/todoController')
+import express from 'express'
+const router = express.Router();
+import {allTodos, deleteTodo, addTodo, markTodo, filterTodo} from '../controllers/todoController.js'
+import { protect } from '../middleware/authMiddleware.js';
 
-// router.get('/todos', allTodos)
-router.get('/todos', filterTodo)
-router.post('/todo', addTodo)
-router.delete('/todos/:id', deleteTodo)
-router.put('/todos/:id', markTodo)
+// router.get('/', allTodos)
+router.get('/', protect,  filterTodo)        // /api/todos
+router.post('/',protect, addTodo)          // /api/todos
+router.delete('/:id',protect, deleteTodo)  // /api/todos/:id
+router.put('/:id',protect, markTodo)       // /api/todos/:id
 
-module.exports = router;
+
+// router.get('/todos', filterTodo)
+// router.post('/todo', addTodo)
+// router.delete('/todos/:id', deleteTodo)
+// router.put('/todos/:id', markTodo)
+
+export default router;
