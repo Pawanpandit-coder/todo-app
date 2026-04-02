@@ -247,7 +247,7 @@ function TodoPage() {
             ))
           ) : (
             <span className="self-center pt-2 text-blue-300 font-semibold">
-              {error}
+              {error ? error:'No Todos'}
             </span>
           )}
         </ul>

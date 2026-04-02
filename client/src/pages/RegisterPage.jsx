@@ -5,6 +5,7 @@ import { LoginContext } from "../context/LoginContext";
 
 export default function RegisterPage() {
   const { setIsLoggedIn } = useContext(LoginContext);
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const [form, setForm] = useState({
     name: "",
@@ -30,6 +31,7 @@ export default function RegisterPage() {
     }
 
     try {
+      setLoading(true);
       const response = await axios.post(`${apiUrl}/api/auth/register`, form);
       const data = {
         name: response.data.user,
@@ -43,9 +45,10 @@ export default function RegisterPage() {
       });
       setIsLoggedIn(true);
       navigate("/");
-      
     } catch (err) {
       console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -100,28 +103,16 @@ export default function RegisterPage() {
             />
           </div>
 
-          {/* Confirm Password */}
-          {/* <div className="flex flex-col items-start">
-            <label className="block mb-1 text-sm text-gray-400">
-              Confirm Password
-            </label>
-            <input
-              type="password"
-              name="confirmPassword"
-              value={form.confirmPassword}
-              onChange={handleChange}
-              placeholder="Confirm password"
-              required
-              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
-            />
-          </div> */}
-
           {/* Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
+            disabled={loading}
+            className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition flex justify-center items-center gap-2"
           >
             Register
+            {loading && (
+              <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+            )}
           </button>
         </form>
 

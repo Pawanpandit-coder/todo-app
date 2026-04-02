@@ -5,6 +5,11 @@ import { LoginContext } from "../context/LoginContext";
 
 export default function LoginPage() {
   const { setIsLoggedIn } = useContext(LoginContext);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState({
+    state: false,
+    value: "",
+  });
   const apiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const [form, setForm] = useState({
@@ -17,6 +22,10 @@ export default function LoginPage() {
       ...form,
       [e.target.name]: e.target.value,
     });
+    setError({
+      state: false,
+      value: '',
+    });
   };
 
   const handleSubmit = async (e) => {
@@ -28,6 +37,7 @@ export default function LoginPage() {
     }
 
     try {
+      setLoading(true);
       const res = await axios.post(`${apiUrl}/api/auth/login`, form);
 
       const data = {
@@ -42,7 +52,13 @@ export default function LoginPage() {
       setIsLoggedIn(true);
       navigate("/");
     } catch (err) {
-      console.error(err);
+      setError({
+        state: true,
+        value: err.response?.data?.message || "Something went wrong",
+      });
+      // console.error(err);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -55,6 +71,11 @@ export default function LoginPage() {
         <h2 className="text-3xl font-bold text-center mb-6">Login</h2>
 
         <form onSubmit={handleSubmit} className="space-y-5">
+          {error.state && (
+            <div className="py-1 border-red-500 w-full text-red-500 text-start px-1 outline">
+              {error.value}
+            </div>
+          )}
           {/* Email */}
           <div className="flex flex-col items-start">
             <label className="block mb-1 text-sm text-gray-400">Email</label>
@@ -78,7 +99,7 @@ export default function LoginPage() {
               value={form.password}
               onChange={handleChange}
               placeholder="Enter your password"
-              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none " 
+              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none "
               required
             />
           </div>
@@ -86,9 +107,13 @@ export default function LoginPage() {
           {/* Button */}
           <button
             type="submit"
-            className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition"
+            disabled={loading}
+            className="w-full py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition flex justify-center items-center gap-2"
           >
             Login
+            {loading && (
+              <span className="w-4 h-4 border-2 border-black border-t-transparent rounded-full animate-spin"></span>
+            )}
           </button>
         </form>
 

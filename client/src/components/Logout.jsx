@@ -11,7 +11,7 @@ function Logout() {
     window.location.reload();
   }
   return (
-    <div className='w-24 text-start px-2 py-1 flex-col border absolute top-12 right-4 cursor-pointer'>
+    <div className='w-24 text-start px-2 py-1 flex-col border absolute top-16 bg-gray-900 right-4 cursor-pointer'>
       <li>Profile</li>
       <li>Setting</li>
       <hr className='my-1'/>
