@@ -11,9 +11,6 @@ server/.env
 # Logs
 *.log
 
-#files
-client/arrow function vs normal function.md 
-
 # OS files
 .DS_Store
 Thumbs.db
