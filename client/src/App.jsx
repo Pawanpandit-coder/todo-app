@@ -4,7 +4,7 @@ import Layout from "./pages/Layout";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import { LoginProvider } from "./context/LoginContext";
-
+import './App.css'
 function App() {
   return (
     <BrowserRouter>

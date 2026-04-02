@@ -50,8 +50,8 @@ export default function RegisterPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center gap-4 text-white flex-col">
-      <Link to={"/"} className="text-2xl font-black place-self-start">
+    <div className="min-h-screen flex items-center gap-4 text-white flex-col p-4">
+      <Link to={"/"} className="text-2xl font-black place-self-start p-5">
         Todal
       </Link>
       <div className="w-full max-w-sm bg-zinc-900 p-8 rounded-2xl shadow-lg">
@@ -68,7 +68,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="Enter your name"
               required
-              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none "
             />
           </div>
 
@@ -82,7 +82,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="Enter your email"
               required
-              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none " // focus:ring-2 focus:ring-white
             />
           </div>
 
@@ -96,7 +96,7 @@ export default function RegisterPage() {
               onChange={handleChange}
               placeholder="Enter password"
               required
-              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full px-4 py-2 rounded-lg bg-black border border-gray-700 focus:outline-none"
             />
           </div>
 

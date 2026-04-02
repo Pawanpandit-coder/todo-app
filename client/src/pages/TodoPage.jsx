@@ -175,16 +175,17 @@ function TodoPage() {
 
   return (
     <div className="border py-4 rounded bg-gray-800 max-w-fit">
-      <h1 className="text-2xl">To do Application</h1>
+      <h1 className="text-2xl pb-2">To do Application</h1>
       <div>
         <input
           type="text"
           name="task"
           id="task"
-          className="border m-2 rounded px-1 py-1"
+          className="border m-2 rounded px-2 py-1 focus:outline-none"
           value={todo}
           onChange={(e) => setTodo(e.target.value)}
           onKeyDown={(e) => (e.key === "Enter" ? addTodo() : null)}
+          placeholder="Enter task"
         />
         <button className="m-2 border px-2 py-1 rounded" onClick={addTodo}>
           Add Task
@@ -194,7 +195,7 @@ function TodoPage() {
         <select
           name="mask"
           id="mask"
-          className="border"
+          className="border focus:outline-none"
           value={filter}
           onChange={applyFilter}
         >

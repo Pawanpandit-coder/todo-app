@@ -11,14 +11,9 @@ function Navbar() {
   const userData = JSON.parse(localStorage.getItem("data"));
 
   return (
-    <header className="px-4 py-1 relative">
+    <header className=" relative p-5">
       <div className="flex justify-between items-center gap-4 w-full">
         <div className="text-2xl font-black">Todal</div>
-        <div className="flex justify-center items-center gap-8">
-          <li>Home</li>
-          <li>About</li>
-          <li>Contact</li>
-        </div>
         <div className="flex justify-center items-center">
           {isLoggedIn && <span>{userData.name}</span>}
           {isLoggedIn ? (
@@ -29,9 +24,9 @@ function Navbar() {
           ) : (
             <Link
               to={"/login"}
-              className="border rounded-full px-2 py-1 font-semibold"
+              className="border rounded-full px-3 py-1 font-semibold"
             >
-              Login
+              Sign-in
             </Link>
           )}
         </div>
